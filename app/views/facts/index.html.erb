@@ -1,0 +1,11 @@
+<ul>
+	<%= @facts.each do |fact| %>
+		<li>
+			<div class="card">
+				<div class="card-block">
+					<p class="card-text"><%= fact.content %></p>
+				</div>
+			</div>
+		</li>
+	<% end %>
+</ul>
