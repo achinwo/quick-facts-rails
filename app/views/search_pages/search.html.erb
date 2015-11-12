@@ -1,0 +1,14 @@
+<%= render '/shared/search_form' %>
+<hr>
+
+<ul>
+	<% if @facts.any? %>
+		<% @facts.each do |fact| %>
+			<li>
+				<p><%= fact.content %></p>
+			</li>
+		<% end %>
+	<% else %>
+		<p>No facts found</p>
+	<% end %>
+</ul>

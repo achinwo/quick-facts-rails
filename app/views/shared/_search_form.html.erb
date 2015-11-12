@@ -1,0 +1,6 @@
+<form action="search" method="get" class="input-group">
+   <%= text_field_tag :query, params[:query], :class => "form-control" %>
+   <span class="input-group-btn">
+        <%= submit_tag "Search", :name => nil, :class =>"btn btn-default"%>
+   </span>
+</form>
