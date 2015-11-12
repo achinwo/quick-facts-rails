@@ -1,11 +1,14 @@
+<h1>SearchPages#home</h1>
 <%= render '/shared/search_form' %>
 <hr>
 
-<ul>
-	<% if @facts.any? %>
+<ul class="list-unstyled">
+	<% if @facts and @facts.any? %>
 		<% @facts.each do |fact| %>
 			<li>
-				<p><%= fact.content %></p>
+				<div class="img-rounded">
+					<p><%= raw fact.content.sub(params[:query], "<mark>#{params[:query]}</mark>") %></p>
+				</div>
 			</li>
 		<% end %>
 	<% else %>
