@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  get 'search_pages/home'
-  get 'search' => 'search_pages#search'
-  post 'add_fact' => 'search_pages#add_fact'
-  get 'add_fact' => 'search_pages#add_fact'
+  get   'search_pages/home'
+  get   'search'    => 'search_pages#search'
+  post  'add_fact' => 'search_pages#add_fact'
+  get   'add_fact'  => 'search_pages#add_fact'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
