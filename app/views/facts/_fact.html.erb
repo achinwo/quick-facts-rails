@@ -1,3 +1,7 @@
 <li>
-	<p><%= fact.content %></p>
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<p><%= raw fact.content.sub(query, "<mark>#{query}</mark>") %></p>
+		</div>
+	</div>
 </li>

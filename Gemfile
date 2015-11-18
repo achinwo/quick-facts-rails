@@ -4,8 +4,8 @@ ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # 
-gem 'bootstrap', '~> 4.0.0.alpha1'
-#gem 'bootstrap-sass', '> 3.2.0.0'
+#gem 'bootstrap', '~> 4.0.0.alpha1'
+gem 'bootstrap-sass' #, '> 3.2.0.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -33,9 +33,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether', '>= 1.1.0'
-end
+#source 'https://rails-assets.org' do
+ # gem 'rails-assets-tether', '>= 1.1.0'
+#end
 
 group :development, :test do
   gem 'sqlite3'
