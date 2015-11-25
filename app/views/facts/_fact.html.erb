@@ -1,7 +1,7 @@
 <li>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<% if !query.blank? %>
+			<% if local_assigns.has_key?('query') and !query.blank? %>
 				<%= raw fact.content.sub(query, "<mark>#{query}</mark>") %>
 			<% else %>
 				<%= fact.content %>

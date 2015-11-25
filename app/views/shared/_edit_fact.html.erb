@@ -1,3 +1,11 @@
-<div class="form-group">
-  <textarea class="form-control" rows="5" id="comment"></textarea>
+<div class="panel panel-default">
+	<%= form_for Fact.new(content: local_assigns.fetch(:txt, '')), remote: true do |f| %>
+	  <div class="panel-body">
+	    <%= f.text_area :content, placeholder: "Add new fact", rows:"3", 
+	    	class:"form-control", "data-submit-on-enter" => true %>
+	  </div>
+	  <div class="panel-footer">
+	    <input type="submit" class="btn btn-success" value="Add Fact" id="add-fact-btn"></input>
+	  </div>
+	<% end %>
 </div>

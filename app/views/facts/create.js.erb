@@ -1,0 +1,5 @@
+
+
+$searchResults = $("#search-results");
+$("#search-results li").first().before("<%= escape_javascript(render(@fact)) %>");
+$("#search-results li").first().hide().slideDown('fast');

@@ -2,60 +2,28 @@
 
 <ul class="nav nav-tabs">
   <li class="active">
-  	<a data-toggle="tab" href="#search">
+  	<a href="#search-tab" data-toggle="tab">
   		<span class="glyphicon glyphicon-search"></span> Search
   	</a>
   </li>
   <li>
-  	<a data-toggle="tab" href="#addFact">
+  	<a href="#add-fact-tab" data-toggle="tab">
   		<span class="glyphicon glyphicon-pencil"></span> Add Fact
   	</a>
   </li>
 </ul>
 
 <div class="tab-content">
-  <div id="search" class="tab-pane fade in active">
+  <div id="search-tab" class="tab-pane fade in active">
     <%= render '/shared/search_form' %>
   </div>
-  <div id="addFact" class="tab-pane fade">
+  <div id="add-fact-tab" class="tab-pane fade">
     <%= render '/shared/edit_fact' %>
   </div>
 </div>
 
 <hr>
-<!-- <a href="#" data-confirm="Are you sure?">I want to code for 20 hrs today.</a> -->
 
+<%= render('/shared/edit_fact', txt: 'testing facts 1...2...3') if Rails.env.development? %>
 
-<ul class="list-unstyled">
-	<% if @facts and @facts.any? %>
-	<%= render @facts, query: params[:query] %>
-	<% else %>
-		<p>No facts found</p>
-	<% end %>
-</ul>
-
-
-<!--
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-Launch demo modal
-</button>
-
- Modal
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-      </div>
-      <div class="modal-body">
-        Some text...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
--->
+<%= render 'shared/search_results', facts: @facts, query: params[:query] %>

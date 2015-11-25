@@ -24,6 +24,11 @@ class SearchPagesController < ApplicationController
 		end
 		query = params[:query]
 		@facts = Fact.all.map {|f| f if f.content.include? query}.compact
+
+		respond_to do |format|
+			format.html  { render 'search' }
+			format.js
+		end
 	end
 
 

@@ -12,11 +12,12 @@ class FactsController < ApplicationController
 
   	def create
   		@fact = Fact.new(fact_params)
-  		if @fact.save
-  			render @fact
-  		else
-  			render 'new'
-  		end
+  		@fact.save
+
+      respond_to do |format|
+        format.html { render @fact }
+        format.js
+      end
   	end
 
   	private
