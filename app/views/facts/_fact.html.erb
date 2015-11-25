@@ -1,7 +1,11 @@
 <li>
 	<div class="panel panel-default">
 		<div class="panel-body">
-			<p><%= raw fact.content.sub(query, "<mark>#{query}</mark>") %></p>
+			<% if !query.blank? %>
+				<%= raw fact.content.sub(query, "<mark>#{query}</mark>") %>
+			<% else %>
+				<%= fact.content %>
+			<% end %>
 		</div>
 	</div>
 </li>

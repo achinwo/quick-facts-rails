@@ -3,7 +3,6 @@
 <head>
   <title>Quick Facts</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 	<body>
@@ -11,5 +10,6 @@
 			<%= yield %>
 			<%= debug(params) if Rails.env.development? %>
 		</div>
+  		<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	</body>
 </html>
