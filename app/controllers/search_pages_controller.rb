@@ -23,7 +23,7 @@ class SearchPagesController < ApplicationController
 			params[:query] = ''
 		end
 		query = params[:query]
-		@facts = Fact.order('created_at DESC').all.map {|f| f if f.content.include? query}.compact
+		@facts = Fact.order('updated_at DESC').all.map {|f| f if f.content.include? query}.compact
 
 		respond_to do |format|
 			format.html  { render 'search' }

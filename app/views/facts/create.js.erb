@@ -1,7 +1,5 @@
 
 
-$searchResults = $("#search-results");
+$searchResults = $("#search-results .search-result");
 $searchResults.filter(':first').before("<%= escape_javascript(render(@fact)) %>");
 $searchResults.filter(':first').hide().slideDown('fast');
-"<% puts params %>"
-history.pushState('', '', 'http://localhost:3000/');

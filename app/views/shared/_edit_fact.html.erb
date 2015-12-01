@@ -1,11 +1,17 @@
+<% @fact = local_assigns.fetch('fact', false) || Fact.new(content: local_assigns.fetch(:txt, '')) %>
+
 <div id="edit-fact" class="panel-default panel">
-	<%= form_for Fact.new(content: local_assigns.fetch(:txt, '')), class:"panel-body", remote: true do |f| %>
+	<%= form_for @fact, class:"panel-body", remote: true do |f| %>
 	  
 	  <%= f.text_area :content, placeholder: "Add new fact", rows:"3", id: "add-fact-txt-area",
-	    	class:"form-control", "data-submit-on-enter" => true %>
+	    	class: "form-control", "data-submit-on-enter" => true %>
 	 
 	  <div class="panel-footer">
-	    <input type="submit" class="btn btn-success" value="Add Fact" id="add-fact-btn"></input>
+	  	<% if @fact.new_record? %>
+	    	<%= submit_tag "Add Fact", class: "btn btn-success", id: "add-fact-btn" %>
+	  	<% else %>
+	    	<%= submit_tag "Save", method: :patch, class: "btn btn-success" %>
+	    <% end %>
 	  </div>
 	<% end %>
 </div>

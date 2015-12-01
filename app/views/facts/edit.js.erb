@@ -1,0 +1,13 @@
+<% @fact = Fact.find(params[:id]) %>
+var txt = '<%= escape_javascript(@fact.content) %>';
+
+var f = $('<%= escape_javascript(render(partial: "shared/edit_fact", locals:{"fact" => @fact})) %>');
+var body = f.find('form').addClass('panel-body');
+body.find('.panel-footer').removeClass('panel-footer').addClass('form-group');
+body.find(':submit').addClass('pull-right "form-control"');
+console.log(body.get());
+
+// var $textArea = $('<textarea class="form-control"/>');
+// $textArea.text(txt);
+// console.log($('#fact-' + <%= @fact.id %> + ' p'));
+$('#fact-' + <%= @fact.id %> + ' .panel-body').first().replaceWith(body);

@@ -1,5 +1,5 @@
 class FactsController < ApplicationController
-  	
+
   	def index
   		query = params[:search]
   		@facts = Fact.all.map {|fact| fact if fact.content.include? query}.compact
@@ -10,6 +10,15 @@ class FactsController < ApplicationController
   		@fact = Fact.new
   	end
 
+    def edit
+      @fact = Fact.find(params[:id])
+
+      respond_to do |format|
+        format.html { render partial: 'shared/edit_fact', locals: {'fact' => @fact} }
+        format.js
+      end
+    end
+
   	def create
   		@fact = Fact.new(fact_params)
   		@fact.save
@@ -19,6 +28,16 @@ class FactsController < ApplicationController
         format.js
       end
   	end
+
+    def update
+      @fact = Fact.find(params[:id])
+      @fact.update_attributes(fact_params)
+      
+      respond_to do |format|
+        format.html {render fact}
+        format.js
+      end
+    end
 
     def destroy
       @fact = Fact.find(params[:id])

@@ -1,12 +1,14 @@
+<% @query = local_assigns.fetch(:query, '') %>
+
 <div class="panel panel-default search-result" id=<%= "fact-#{fact.id}" %> >
 	<div class="panel-body">
-		<% if local_assigns.fetch(:query, false) and not query.blank? %>
-			<p><%= raw fact.content.sub(query, "<mark>#{query}</mark>") %></p>
+		<% if not @query.blank? %>
+			<p><%= raw fact.content.sub(@query, "<mark>#{@query}</mark>") %></p>
 		<% else %>
 			<p><%= fact.content %></p>
 		<% end %>
 		<div class="btn-group search-result-control pull-right">
-			<button type="submit" class="btn btn-default">Edit</button>
+			<%= link_to 'Edit', edit_fact_path(fact), method: :get, remote: true, class: 'btn btn-default' %> 
 			<%= link_to 'Delete', fact, method: :delete, remote: true, class: 'btn btn-default' %> 
 		</div>
 	</div>
