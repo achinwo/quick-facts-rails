@@ -1,7 +1,7 @@
-<ul class="list-unstyled" id="search-results" >
-	<% if facts and facts.any? %>
+<div class="panel-group" id="search-results" >
+	<% if facts.any? %>
 	  <%= render facts, query: query %>
 	<% else %>
 		<p>No facts found</p>
 	<% end %>
-</ul>
+</div>

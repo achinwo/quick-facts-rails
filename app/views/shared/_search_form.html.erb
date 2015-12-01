@@ -1,5 +1,5 @@
-<%= form_tag("", method:"get", class:"input-group", enforce_utf8:false, remote:true) do %>
-   <%= text_field_tag :query, params[:query], :class => "form-control", :id => "searchText" %>
+<%= form_tag("", method:"get", class:"input-group", id:"search-fld", enforce_utf8:false, remote:true) do %>
+   <%= text_field_tag :query, params[:query], :class => "form-control", :id => "search-text" %>
    <span class="input-group-btn">
         <%= submit_tag "Search", :name => nil, :class =>"btn btn-default"%>
    </span>

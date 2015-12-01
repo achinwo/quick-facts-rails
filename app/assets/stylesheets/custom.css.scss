@@ -11,6 +11,26 @@ $gray-medium-light: #eaeaea;
   box-sizing:         border-box;
 }
 
+#edit-fact{
+  @include border-top-radius(0);
+  border-top: transparent;
+}
+
+#add-fact-txt-area{
+  @include border-bottom-radius(0);
+  @include border-top-radius(0);
+  border-style: none;
+  border-top: none;
+}
+
+#search-fld, #search-text{
+  @include border-top-radius(0);
+  border-top: transparent;
+}
+
+
+
+
 /* universal */
 
 body {

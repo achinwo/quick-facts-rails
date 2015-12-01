@@ -17,22 +17,6 @@
 //= require turbolinks
 //= require_tree .
 
-function EvaluateForm()
-{	
-	var str = document.getElementById('searchText').value;
-    if( str.substr(-1, 1) == '?'){
-    	document.getElementById('searchText').value = str.substr(0, str.length-1);
-        document.ajaxSearchFrm.method = "GET";
-        var elem = document.getElementById("auth_token");
- 		elem.parentElement.removeChild(elem);
-        console.log("getting...");
-    }
-    else{
-        document.ajaxSearchFrm.method = "POST";
-        document.ajaxSearchFrm.action = "add_fact";
-        console.log("Posting...");
-    }
-    document.forms["ajaxSearchFrm"].submit();
-
-    return false;
-}
+$(function (){
+    
+});

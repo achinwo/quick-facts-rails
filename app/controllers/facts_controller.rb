@@ -20,6 +20,16 @@ class FactsController < ApplicationController
       end
   	end
 
+    def destroy
+      @fact = Fact.find(params[:id])
+      @fact.destroy
+
+      respond_to do |format|
+        format.html { redirect_to facts_url }
+        format.js   { render :layout => false }
+      end
+    end
+
   	private
   		def fact_params
   			params.require(:fact).permit(:content)
