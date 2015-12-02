@@ -1,5 +1,4 @@
-
-
 $searchResults = $("#search-results .search-result");
-$searchResults.filter(':first').before("<%= escape_javascript(render(@fact)) %>");
-$searchResults.filter(':first').hide().slideDown('fast');
+$searchResults.first().before("<%= escape_javascript(render(@fact)) %>");
+$searchResults.first().removeClass("panel-default").addClass("panel-success");
+$searchResults.first().hide().slideDown('fast');

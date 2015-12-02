@@ -28,7 +28,18 @@ $gray-medium-light: #eaeaea;
   border-top: transparent;
 }
 
+.search-result-control{
+  opacity: 0;
+  height: 0;
+  transition: all 200ms ease-in-out;
+}
 
+.panel-body:hover > .search-result-control{
+  display: block;
+  opacity: 1;
+  height: $input-height-base;
+  transition: all 200ms ease-in-out;
+}
 
 
 @mixin box_sizing {
@@ -130,6 +141,8 @@ footer {
 }
 
 /* miscellaneous */
+
+
 
 .debug_dump {
   clear: both;

@@ -1,6 +1,6 @@
 <% @query = local_assigns.fetch(:query, '') %>
 
-<div class="panel panel-default search-result" id=<%= "fact-#{fact.id}" %> >
+<div class="panel panel-default search-result" id=<%= "fact-#{fact.id}"%> data-id=<%= "#{fact.id}" %> >
 	<div class="panel-body">
 		<% if not @query.blank? %>
 			<p><%= raw fact.content.sub(@query, "<mark>#{@query}</mark>") %></p>

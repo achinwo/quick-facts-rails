@@ -1,7 +1,7 @@
 class FactsController < ApplicationController
 
   	def index
-  		query = params[:search]
+  		query = params[:query] || ''
   		@facts = Fact.all.map {|fact| fact if fact.content.include? query}.compact
   		#render plain:@facts
   	end

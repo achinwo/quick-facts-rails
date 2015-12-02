@@ -1,4 +1,21 @@
-console.log($("#search-results"));
-$("#search-results").empty().html(
-	"<%= escape_javascript(render('shared/search_results', facts:@facts, query:params[:query])) %>");
-history.pushState('', '', '<%= root_url(query: params[:query]) %>');
+console.log('<%= puts params %>');
+
+var id = <%= params.fetch('id', false) %>
+var results = $("#search-results");
+
+if (id === false){
+	var elem = $("<%= escape_javascript(render('shared/search_results', facts:@facts, query:params[:query])) %>");
+	results.replaceWith(elem.get(0));
+	history.pushState('', '', '<%= root_url(query: params[:query]) %>');
+}else{
+	results.append("<%= escape_javascript(render(@facts, query:params[:query])) %>");
+}
+
+if (<%= @facts.length %> > 0){
+	$('.load-more-container').show();
+	$('.loading-gif').hide();
+    // show our load more link
+    $('.load-more').show();
+}else{
+	$('.load-more-container').hide();
+}
