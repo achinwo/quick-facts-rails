@@ -6,8 +6,10 @@
 	<% end %>
 </div>
 
-<div class="load-more-container panel panel-default">
-    <!-- hide our loading gif image so that we show it when making ajax call via jquery -->
-	<%= image_tag "ajax-loader.gif", style: "display:none;", class: "loading-gif" %>
-	<%= link_to "Load More", root_path, class: "load-more center" %>
-</div>
+<% if facts.length >= 6 %>
+	<div class="load-more-container panel panel-default">
+	    <!-- hide our loading gif image so that we show it when making ajax call via jquery -->
+		<%= image_tag "ajax-loader.gif", style: "display:none;", class: "loading-gif" %>
+		<%= link_to "Load More", root_path, class: "load-more center" %>
+	</div>
+<% end %>

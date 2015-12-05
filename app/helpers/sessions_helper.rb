@@ -10,4 +10,9 @@ module SessionsHelper
 		session[:id] = user.id
 	end
 
+	def log_out_user
+		session.delete :id
+		redirect_to root_url
+	end
+
 end

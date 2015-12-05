@@ -6,16 +6,21 @@ class ApplicationController < ActionController::Base
 
   protected
 	  def get_facts
-			@facts = params[:query].blank? ? 
-						Fact.all
-						:
-						Fact.all.map {|f| f if f.content.include? params[:query]}.compact
+	  		if current_user
+	  			@facts = current_user.facts
+	  		else
+	  			@facts = Fact.where(user_id: nil)
+	  		end
+
+			if !params[:query].blank?
+				@facts = @facts.map {|f| f if f.content.include? params[:query]}.compact
+			end
 
 			if params[:id]
 			  	id = params[:id].to_i
 		      	@facts = @facts.map {|f| f if f.id < id}.compact
 			end
-		    puts session
+
 		    @facts = @facts.first(6)
 	  end
 end
