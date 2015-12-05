@@ -21,6 +21,8 @@ class FactsController < ApplicationController
 
   	def create
   		@fact = Fact.new(fact_params)
+      puts "PARAMS #{fact_params}"
+      @fact.update_attribute(:user_id, current_user.id) if current_user
   		@fact.save
 
       respond_to do |format|

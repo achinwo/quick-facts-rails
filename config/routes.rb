@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  get 'users/new'
+
   get   'search_pages/home'
+  get   'login'   => 'sessions#new'
+  post  'login'   => 'sessions#create'
+  get   'logout'  => 'sessions#destroy'
   get   'search'    => 'search_pages#search'
   post  'add_fact' => 'search_pages#add_fact'
   get   'add_fact'  => 'search_pages#add_fact'
@@ -11,6 +16,7 @@ Rails.application.routes.draw do
   root  'search_pages#search'
 
   resources :facts
+  resources :users
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
