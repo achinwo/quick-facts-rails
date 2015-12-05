@@ -4,16 +4,21 @@
 
 <div class="row">
 	<div class="col-md-6 col-md-offset-3 form-group">
-		<%= form_for(:session, url: login_path)  do |f| %>
+		<%= form_for(:session, url: login_path, html: {novalidate: "novalidate"})  do |f| %>
 			<%= f.label :email %>
 			<%= f.email_field :email, value: params.fetch(:session, {})[:email], class: "form-control" %>
 
 			<%= f.label :password %>
+			<%= link_to "(forgot password)", new_password_reset_path %>
 			<%= f.password_field :password, class: "form-control" %>
 
+			<%= f.label :remember_me, class: "checkbox inline" do |r| %>
+				<%= f.check_box :remember_me, checked: ["true", "1"].include?(params.fetch(:session, {})[:remember_me].to_s) %>
+				<span>Remember me on this computer</span>
+			<% end %>
+
 			<%= f.submit "Log In", class: "btn btn-primary form-control" %>
-			<hr>
-			<span>New user? </span><%= link_to "Sign up", new_user_path %>
+			<p>New user? <%= link_to "Sign up", new_user_path %></p>
 		<% end %>
 	</div>
 </div>
