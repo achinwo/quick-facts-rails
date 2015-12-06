@@ -1,0 +1,11 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<ul class="list-group">
+		  <% User.all.each do |user| %>
+			  <li class="list-group-item">
+			  	<span><%= user.name %></span> | <span><%= user.email %></span>
+			  </li>
+		  <% end %>
+		</ul>
+	</div>
+</div>
