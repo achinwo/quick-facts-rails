@@ -12,7 +12,7 @@
 			<% flash.each do |msg_type, msg| %>
 				<div class="alert alert-<%= msg_type %> alert-dismissible" role="alert">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<span><%= msg %></span>
+						<span><%= raw msg %></span>
 				</div>
 			<% end %>
 			<%= yield %>

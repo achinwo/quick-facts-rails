@@ -16,6 +16,12 @@ module SessionsHelper
 		cookie.permanent[:remember_token] = user.remember_token
 	end
 
+	def forget_user(user)
+		cookie.permanent.signed.delete :user_id
+		cookie.permanent.delete :remember_me_token
+		user.update_atribute(:remember_me_digest, nil)
+	end
+
 	def log_out_user
 		session.delete :user_id
 		redirect_to root_url

@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
 	attr_accessor :password_reset_token
 	attr_accessor :activation_token
 	before_save :downcase_email
-	before_create :create_activation_digest
+	before_create :create_account_activation_digest
 
 	def User.digest(string)
 		cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -54,15 +54,15 @@ class User < ActiveRecord::Base
 		update_attribute(:password_reset_sent_at, Time.zone.now)
 	end
 
+	def create_account_activation_digest
+		self.activation_token = User.new_token
+		self.activation_digest = User.digest(self.activation_token)
+  		update_attribute(:activation_digest, self.activation_digest) if persisted?
+	end
+
 	private
 
 		def downcase_email
 			self.email = email.downcase
 		end
-
-		def create_activation_digest
-			self.activation_token = User.new_token
-			self.activation_digest = User.digest(self.activation_token)
-		end
-
 end

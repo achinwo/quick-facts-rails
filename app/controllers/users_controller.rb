@@ -10,10 +10,11 @@ class UsersController < ApplicationController
   	@user = User.new(user_params)
   	if @user.save
       @user.send_account_activation_email
-      flash[:success] = "Account activation instructions have sent to #{@user.email}"
+      message = "Account activation instructions have sent to #{@user.email}. "
+      message += "<a href='#{new_account_activation_url(email: @user.email)}'>Re-send?</a>"
+      flash[:success] = message
   		redirect_to root_url
   	else
-      puts "ERRORS: #{@user.errors.full_messages}"
   		render 'new'
   	end
   end

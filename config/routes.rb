@@ -1,15 +1,8 @@
 Rails.application.routes.draw do
-  get 'account_activations/edit'
-
-  get 'users/new'
-
-  get   'search_pages/home'
   get   'login'   => 'sessions#new'
   post  'login'   => 'sessions#create'
   get   'logout'  => 'sessions#destroy'
   get   'search'    => 'search_pages#search'
-  post  'add_fact' => 'search_pages#add_fact'
-  get   'add_fact'  => 'search_pages#add_fact'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -20,7 +13,7 @@ Rails.application.routes.draw do
   resources :facts
   resources :users
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :account_activations, only: [:edit]
+  resources :account_activations, only: [:new, :edit]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
