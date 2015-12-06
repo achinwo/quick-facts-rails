@@ -45,11 +45,11 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.gmail.com',
+    :address        => 'aspmx.l.google.com', #'smtp.gmail.com',
     :domain         => 'mail.google.com',
-    :port           => 587,
-    :user_name      => '***@gmail.com',
-    :password       => '***',
+    :port           => 25, #587,
+    #:user_name      => 'xxx@gmail.com',
+    #:password       => 'xxx',
     :authentication => :plain,
     :enable_starttls_auto => true
   }

@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+
+
   def new
   	@user = User.new
   end
@@ -6,8 +9,8 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  		flash[:success] = "Welcome #{@user.name}"
-      log_in_user @user
+      @user.send_account_activation_email
+      flash[:success] = "Account activation instructions have sent to #{@user.email}"
   		redirect_to root_url
   	else
       puts "ERRORS: #{@user.errors.full_messages}"

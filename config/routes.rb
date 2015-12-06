@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'account_activations/edit'
+
   get 'users/new'
 
   get   'search_pages/home'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   resources :facts
   resources :users
   resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :account_activations, only: [:edit]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
