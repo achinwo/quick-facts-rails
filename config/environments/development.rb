@@ -48,7 +48,7 @@ Rails.application.configure do
     :address        => 'smtp.gmail.com',
     :domain         => 'mail.google.com',
     :port           => 587,
-    :user_name      => 'anthony.chinwo@gmail.com',
+    :user_name      => '***@gmail.com',
     :password       => '***',
     :authentication => :plain,
     :enable_starttls_auto => true

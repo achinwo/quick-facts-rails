@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :facts
   resources :users
-  resources :password_resets, only: [:new, :create]
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
