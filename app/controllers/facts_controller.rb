@@ -6,7 +6,7 @@ class FactsController < ApplicationController
   		#render plain:@facts
       dd = []
       for fact in @facts
-         dd.push({id: fact.id, name: fact.content[0...16]})
+         dd.push(fact.attributes)
       end
       
       respond_to do |format|
