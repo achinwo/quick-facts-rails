@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get   'login'   => 'sessions#new'
   post  'login'   => 'sessions#create'
-  get   'logout'  => 'sessions#destroy'
+  delete 'logout'  => 'sessions#destroy'
   get   'search'    => 'search_pages#search'
 
   # The priority is based upon order of creation: first created -> highest priority.

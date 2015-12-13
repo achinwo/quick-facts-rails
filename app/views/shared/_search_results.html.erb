@@ -1,5 +1,10 @@
 <div class="panel-group" id="search-results" >
 	<% if facts.any? %>
+		<div class="well well-sm">
+			<% facts.each do |f| %>
+				  <%= content_tag(:span, f.category.name, class:"label label-default") if !f.category.nil? %>
+			<% end %>
+		</div>
 	  	<%= render facts, query: query %>
 	<% else %>
 		<p>No facts found</p>

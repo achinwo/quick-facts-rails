@@ -1,9 +1,18 @@
 class FactsController < ApplicationController
 
   	def index
-  		query = params[:query] || ''
+  		query = params[:query] || params[:q] || ''
   		@facts = Fact.all.map {|fact| fact if fact.content.include? query}.compact
   		#render plain:@facts
+      dd = []
+      for fact in @facts
+         dd.push({id: fact.id, name: fact.content[0...16]})
+      end
+      
+      respond_to do |format|
+        format.html
+        format.json { render json: dd}
+      end
   	end
 
   	def new

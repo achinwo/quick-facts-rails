@@ -11,11 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151208195551) do
+ActiveRecord::Schema.define(version: 20151213005553) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "extension"
     t.integer  "fact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,6 +42,17 @@ ActiveRecord::Schema.define(version: 20151208195551) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "fact_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "relationships", ["category_id"], name: "index_relationships_on_category_id"
+  add_index "relationships", ["fact_id", "category_id"], name: "index_relationships_on_fact_id_and_category_id", unique: true
+  add_index "relationships", ["fact_id"], name: "index_relationships_on_fact_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

@@ -1,6 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+body {
+  font-family: Lato, sans-serif;
+}
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;

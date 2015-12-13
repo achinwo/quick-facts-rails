@@ -24,4 +24,5 @@
 
 <%= render('/shared/edit_fact', txt: 'testing facts 1...2...3') if Rails.env.development? %>
 
+
 <%= render 'shared/search_results', facts: @facts, query: params[:query] %>
