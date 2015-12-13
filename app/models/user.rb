@@ -1,4 +1,10 @@
 class User < ActiveRecord::Base
+	include Preferences
+ 
+    preference :chime, false
+    preference :name, "Josh"
+    preference :awesome, true
+
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\-.]+\.[a-z]+\z/i
 
 	has_many :facts

@@ -13,7 +13,8 @@ class ApplicationController < ActionController::Base
 	  		end
 
 			if !params[:query].blank?
-				@facts = @facts.map {|f| f if f.content.include? params[:query]}.compact
+				query = params[:query].downcase
+				@facts = @facts.map {|f| f if f.content.downcase.include? query}.compact
 			end
 
 			if params[:id]
