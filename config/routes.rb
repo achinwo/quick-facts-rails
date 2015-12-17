@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'authenticate' => 'users#authenticate'
   get   'login'   => 'sessions#new'
   post  'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'

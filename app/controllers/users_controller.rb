@@ -22,6 +22,23 @@ class UsersController < ApplicationController
   	end
   end
 
+  def authenticate
+    password = params[:password]
+    email = params[:email]
+
+    user = User.find_by(email: email)
+
+    respond_to do |format|
+      format.json do
+        if user && user.authenticate(password)
+          render json: user
+        else
+          render file: "public/422.html", status: :unauthorized, layout: false
+        end
+      end
+    end
+  end
+
   private
 
   	def user_params
