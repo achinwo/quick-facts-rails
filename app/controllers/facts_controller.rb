@@ -37,6 +37,7 @@ class FactsController < ApplicationController
       respond_to do |format|
         format.html { render @fact }
         format.js
+        format.json { render json: @fact }
       end
   	end
 
