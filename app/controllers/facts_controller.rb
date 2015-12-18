@@ -63,6 +63,6 @@ class FactsController < ApplicationController
 
   	private
   		def fact_params
-  			params.require(:fact).permit(:content)
+  			params.require(:fact).permit(:content, :user_id)
   		end
 end
