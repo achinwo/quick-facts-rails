@@ -10,15 +10,30 @@ class UsersController < ApplicationController
   end
 
   def create
+    puts "PARAMS= #{params}"
   	@user = User.new(user_params)
-  	if @user.save
-      @user.send_account_activation_email
-      message = "Account activation instructions have sent to #{@user.email}. "
-      message += "<a href='#{new_account_activation_url(email: @user.email)}'>Re-send?</a>"
-      flash[:success] = message
-  		redirect_to root_url
-  	else
-  		render 'new'
+  	@user.save
+
+    respond_to do |format|
+      format.json do
+        if @user.persisted?
+          render json: @user
+        else
+          render json: {error: @user.errors}, status: :not_acceptable, layout: false
+        end
+      end
+
+      format.html do
+          if @user.persisted?
+            @user.send_account_activation_email
+            message = "Account activation instructions have sent to #{@user.email}. "
+            message += "<a href='#{new_account_activation_url(email: @user.email)}'>Re-send?</a>"
+            flash[:success] = message
+            redirect_to root_url
+          else
+            render 'new'
+          end
+      end
   	end
   end
 
