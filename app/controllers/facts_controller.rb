@@ -3,7 +3,7 @@ class FactsController < ApplicationController
   	def index
   		query = (params[:query] || params[:q] || '').downcase
       user_ids = [params.fetch(:user_id, nil)]
-      user_ids.push(nil) if params.fetch('include_anon', false)
+      user_ids.push(nil) if [true, "true", "1"].include?(params.fetch(:include_anon, false))
       @facts = Fact.all.where({user_id: user_ids.uniq})
       @facts.map {|fact| fact if fact.content.downcase.include? query}.compact
       
