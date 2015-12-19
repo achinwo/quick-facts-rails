@@ -5,7 +5,7 @@ class FactsController < ApplicationController
       user_ids = [params.fetch(:user_id, nil)]
       user_ids.push(nil) if [true, "true", "1"].include?(params.fetch(:include_anon, false))
       @facts = Fact.all.where({user_id: user_ids.uniq})
-      @facts.map {|fact| fact if fact.content.downcase.include? query}.compact
+      @facts = @facts.map {|fact| fact if fact.content.downcase.include? query}.compact
       
       respond_to do |format|
         format.html
