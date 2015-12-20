@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     puts "PARAMS= #{params}"
   	@user = User.new(user_params)
   	@user.save
+    @user.send_account_activation_email if @user.persisted?
 
     respond_to do |format|
       format.json do
@@ -26,7 +27,6 @@ class UsersController < ApplicationController
 
       format.html do
           if @user.persisted?
-            @user.send_account_activation_email
             message = "Account activation instructions have sent to #{@user.email}. "
             message += "<a href='#{new_account_activation_url(email: @user.email)}'>Re-send?</a>"
             flash[:success] = message
