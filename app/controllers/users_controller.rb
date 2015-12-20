@@ -19,7 +19,8 @@ class UsersController < ApplicationController
         if @user.persisted?
           render json: @user
         else
-          render json: {error: @user.errors}, status: :not_acceptable, layout: false
+          puts "Sending error response: #{@user.errors.full_messages}"
+          render json: {errors: @user.errors}, status: :not_acceptable, layout: false
         end
       end
 
