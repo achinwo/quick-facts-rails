@@ -6,10 +6,10 @@ class FactsController < ApplicationController
       user_ids.push(nil) if [true, "true", "1"].include?(params.fetch(:include_anon, false))
       @facts = Fact.all.where({user_id: user_ids.uniq})
       @facts = @facts.map {|fact| fact if fact.content.downcase.include? query}.compact
-      
+
       respond_to do |format|
         format.html
-        format.json { render json: @facts}
+        format.json { render json: { facts: @facts, users: @facts.map(&:user).uniq.compact }}
       end
   	end
 
