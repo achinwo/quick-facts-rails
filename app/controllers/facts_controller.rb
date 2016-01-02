@@ -35,7 +35,7 @@ class FactsController < ApplicationController
       respond_to do |format|
         format.html { render @fact }
         format.js
-        format.json { render json: @fact }
+        format.json { render json: { fact: @fact }}
       end
   	end
 
@@ -49,6 +49,15 @@ class FactsController < ApplicationController
       end
     end
 
+    def delete
+      @fact = Fact.find(params[:id])
+      @fact.update_attribute(:deleted, true)
+      puts "PARAMS #{params} #{@fact.to_json}"
+      respond_to do |format|
+        format.json { render json: { fact: @fact } }
+      end
+    end
+
     def destroy
       @fact = Fact.find(params[:id])
       @fact.destroy
@@ -57,6 +66,13 @@ class FactsController < ApplicationController
         format.html { redirect_to facts_url }
         format.js   { render :layout => false }
       end
+    end
+
+    def status
+      query = (params[:query] || params[:q] || '').downcase
+      user_ids = [params.fetch(:user_id, nil)]
+      user_ids.push(nil) if [true, "true", "1"].include?(params.fetch(:include_anon, false))
+      @facts = Fact.all.where({user_id: user_ids.uniq})
     end
 
   	private

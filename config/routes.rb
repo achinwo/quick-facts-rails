@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post  'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get   'search'    => 'search_pages#search'
+  post 'facts/:id'  => 'facts#delete'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

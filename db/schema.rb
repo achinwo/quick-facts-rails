@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151213005553) do
+ActiveRecord::Schema.define(version: 20151230214057) do
 
   create_table "attachments", force: :cascade do |t|
     t.string   "extension"
@@ -28,9 +28,10 @@ ActiveRecord::Schema.define(version: 20151213005553) do
 
   create_table "facts", force: :cascade do |t|
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "user_id"
+    t.boolean  "deleted",    default: false
   end
 
   add_index "facts", ["user_id"], name: "index_facts_on_user_id"
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 20151213005553) do
     t.datetime "password_reset_sent_at"
     t.boolean  "admin",                  default: false
     t.string   "remember_me_digest"
+    t.boolean  "deleted",                default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
