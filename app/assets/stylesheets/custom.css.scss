@@ -195,3 +195,29 @@ input {
   margin-top: 45px;
   @include box_sizing;
 }
+
+.app-store {
+    padding-top: 5px;
+}
+
+/*.app-store ul li a.google-play {
+    background: url(/assets/sprite_social.png) no-repeat scroll -155px -57px rgba(0, 0, 0, 0);
+}*/
+
+.app-store ul li a.google-play {
+    background: url(/assets/sprite_social.png) no-repeat scroll 0px -57px rgba(0, 0, 0, 0);
+}
+
+.app-store ul {
+    margin: 0 0 0 -20px;
+    list-style: none;
+    width: 245px;
+    display: inline;
+}
+
+.app-store ul li a {
+    display: inline-block;
+    height: 45px;
+    width: 135px;
+}
+

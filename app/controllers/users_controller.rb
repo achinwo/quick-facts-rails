@@ -9,6 +9,26 @@ class UsersController < ApplicationController
   	@user = User.new
   end
 
+  def send_message
+    require "google/api_client"
+    Rails.logger.info "Lookup book details for"
+
+    # Create Books API client
+    api_client = Google::APIClient.new application_name: "Bookshelf Sample Application"
+    api_client.authorization = nil # Books API does not require authorization
+    books_api = api_client.discovered_api "books"
+
+    result = api_client.execute(
+        api_method: books_api.volumes.list,
+        parameters: { q: "Treasury Island", order_by: "relevance" } # what is the default order?  can we leave off "relevance" and get consistently good results?
+    )
+
+    # Lookup a list of relevant books based on the provided book title.
+    volumes = result.data.items
+
+    render json: {message: volumes}
+  end
+
   def create
     puts "PARAMS= #{params}"
   	@user = User.new(user_params)
@@ -18,10 +38,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json do
         if @user.persisted?
-          render json: @user
+          render json: {user: @user}
         else
           puts "Sending error response: #{@user.errors.full_messages}"
-          render json: {errors: @user.errors}, status: :not_acceptable, layout: false
+          render json: {errors: @user.errors}
         end
       end
 
@@ -47,9 +67,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json do
         if user && user.authenticate(password)
-          render json: user
+          render json: {user: user}
         else
-          render file: "public/422.html", status: :unauthorized, layout: false
+          render json: {errors: {password: ["Password is invalid"]}}
         end
       end
     end

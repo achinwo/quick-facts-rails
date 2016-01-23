@@ -2,14 +2,21 @@ class FactsController < ApplicationController
 
   	def index
   		query = (params[:query] || params[:q] || '').downcase
-      user_ids = [params.fetch(:user_id, nil)]
+      user_id = params.fetch(:user_id, nil)
+      user_ids = [user_id]
       user_ids.push(nil) if [true, "true", "1"].include?(params.fetch(:include_anon, false))
       @facts = Fact.all.where({user_id: user_ids.uniq})
       @facts = @facts.map {|fact| fact if fact.content.downcase.include? query}.compact
 
       respond_to do |format|
         format.html
-        format.json { render json: { facts: @facts, users: @facts.map(&:user).uniq.compact }}
+        format.json do
+          users = @facts.map(&:user).uniq.compact
+          groups = @facts.map(&:group).uniq.compact
+          res = { facts: @facts, users: users, groups: groups }
+          puts "Result #{res}"
+          render json: res
+        end
       end
   	end
 

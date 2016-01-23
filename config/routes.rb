@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete 'logout'  => 'sessions#destroy'
   get   'search'    => 'search_pages#search'
   post 'facts/:id'  => 'facts#delete'
+  get 'gcm' =>  'users#send_message'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -13,7 +14,11 @@ Rails.application.routes.draw do
   root  'search_pages#search'
 
   resources :facts
-  resources :users
+  resources :variables
+  resources :users do
+    resources :groups
+  end
+
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :account_activations, only: [:new, :edit]
 
