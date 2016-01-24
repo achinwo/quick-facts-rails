@@ -6,6 +6,7 @@
 #
 default: &default
   adapter: sqlite3
+  encoding: utf8
   pool: 5
   timeout: 5000
 
@@ -22,4 +23,8 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  username: DB_USER
+  password: DB_PASS
+  host: DB_HOST
+  database: DB_NAME

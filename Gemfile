@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.1.2'
 
 gem 'gcloud'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -31,7 +31,7 @@ gem 'bcrypt'
 
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
