@@ -16,6 +16,8 @@
 # [START all]
 set -e
 
+printf '%s\n' "Starting configuration process..."
+
 # [START logging]
 curl -s "https://storage.googleapis.com/signals-agents/logging/google-fluentd-install.sh" | bash
 cat >/etc/google-fluentd/config.d/railsapp.conf << EOF
