@@ -59,8 +59,8 @@ mkdir "$DIR"
 chown -R railsapp:railsapp "$DIR"
 
 sudo -u railsapp -H bundle install --path "$DIR"
-sudo -u railsapp -H bundle exec rake db:create
-sudo -u railsapp -H bundle exec rake db:migrate
+sudo -u railsapp -H bundle exec rake db:create RAILS_ENV="production"
+sudo -u railsapp -H bundle exec rake db:migrate RAILS_ENV="production"
 
 cat gcloud/default-nginx > /etc/nginx/sites-available/default
 systemctl restart nginx.service
