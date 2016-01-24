@@ -40,7 +40,7 @@ apt-get install -y git ruby-dev build-essential libxml2-dev zlib1g-dev nginx lib
 gem install bundler --no-ri --no-rdoc
 
 USER=railsapp
-if id -u "$1" >/dev/null 2>&1; then
+if id -u "$USER" >/dev/null 2>&1; then
     printf '%s\n' "deleting existing user: $USER"
     userdel -r "$USER"
 fi
